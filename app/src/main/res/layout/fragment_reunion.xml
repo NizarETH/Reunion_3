@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:id="@+id/main_content" >
+
+    <ImageView
+        android:id="@+id/item_list_avatar"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_margin="10dp"
+        app:cardCornerRadius="40dp"
+        android:src="@drawable/ic_cercle"
+        app:tint="@color/dark_sea_green"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="83dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/main_content2"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:maxLines="1"
+            android:orientation="horizontal"
+            android:textAlignment="center">
+
+            <TextView
+                android:id="@+id/item_list_nameR"
+                style="@style/textTitre"
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="2dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:padding="2dp"
+                android:text="Nom réunion"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="10dp"
+                android:layout_height="40dp"
+                android:layout_margin="10dp"
+                android:layout_marginStart="16dp"
+                android:src="@drawable/ic_barre" />
+
+            <TextView
+                android:id="@+id/item_list_heureR"
+                style="@style/textTitre"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="2dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:padding="2dp"
+                android:text="heure"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="10dp"
+                android:layout_height="40dp"
+                android:layout_margin="10dp"
+                android:layout_marginStart="16dp"
+                android:src="@drawable/ic_barre" />
+
+            <TextView
+                android:id="@+id/item_list_salleR"
+                style="@style/textTitre"
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="2dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                android:padding="2dp"
+                android:text="Salle"
+                android:textStyle="bold" />
+
+
+            <ImageButton
+                android:id="@+id/item_list_delete_button"
+                android:layout_width="43dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="16dp"
+                android:background="@null"
+                android:minWidth="48dp"
+                android:minHeight="48dp"
+                app:tint="@color/dark_slate_blue"
+                app:layout_constraintBottom_toBottomOf="@+id/item_list_name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/item_list_name"
+                app:srcCompat="@drawable/ic_delete_white_24dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/main_content1"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/item_list_participant"
+                style="@style/textSalle"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_marginStart="2dp"
+                android:maxLines="1"
+                android:text="Email_Participant"
+                android:textStyle="bold"
+                tools:listitem="Email_Participant" />
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

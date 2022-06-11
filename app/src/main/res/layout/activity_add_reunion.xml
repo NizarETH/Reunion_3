@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.reunion_list.AddReunionActivity"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal">
+       <TextView
+        android:id="@+id/nom_Reunion"
+        android:layout_width="98dp"
+        android:layout_height="38dp"
+        android:text="Nom Reunion :" />
+
+        <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/inom_Reunion"
+        android:layout_width="98dp"
+        android:layout_height="38dp"
+        android:hint="Nom"
+        android:inputType="textPersonName" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal">
+       <TextView
+        android:id="@+id/intitule_Reunion"
+        android:layout_width="120dp"
+        android:layout_height="38dp"
+        android:text="Intitulé Reunion :" />
+
+        <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/iintitule_Reunion"
+        android:layout_width="98dp"
+        android:layout_height="38dp"
+        android:hint="Intitule"
+        android:inputType="textAutoComplete" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal">
+      <TextView
+        android:id="@+id/date_Reunion"
+        android:layout_width="98dp"
+        android:layout_height="38dp"
+        android:text="Date Reunion :" />
+
+        <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/idate_Reunion"
+        android:layout_width="98dp"
+        android:layout_height="38dp"
+        android:hint="Heure"
+        android:inputType="datetime" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/nom_salle_Reunion"
+            android:layout_width="120dp"
+            android:layout_height="38dp"
+            android:text="Nom Salle :" />
+
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inom_salle_Reunion"
+            android:layout_width="98dp"
+            android:layout_height="38dp"
+            android:hint="salle"
+            android:inputType="textAutoComplete" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal">
+      <TextView
+        android:id="@+id/participants_Reunion"
+        android:layout_width="120dp"
+        android:layout_height="38dp"
+        android:text="Liste participants :" />
+
+        <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/iparticipant_Reunion"
+        android:layout_width="98dp"
+        android:layout_height="38dp"
+        android:hint="Participant"
+        android:inputType="text" />
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/create"
+        style="@style/Widget.MaterialComponents.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:enabled="false"
+        android:layout_gravity="center"
+        app:cornerRadius="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Save"/>
+</LinearLayout>
