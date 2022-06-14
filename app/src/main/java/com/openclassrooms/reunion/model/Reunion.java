@@ -1,7 +1,9 @@
 package com.openclassrooms.reunion.model;
 
+import java.sql.Time;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -16,12 +18,16 @@ public class Reunion {
     /** Full name */
     private String nameReunion;
 
+    /** Full libellename */
+    private String libelleReunion;
+
     /** Heure */
     private String heureReunion;
 
+    /** Date */
     private String dateReunion;
 
-    /** Nom Salle */
+    /** Nom De La Salle */
     private String nameSalleReunion;
 
     /** mail address participant*/
@@ -34,11 +40,13 @@ public class Reunion {
      * @param heureReunion
      * @param addEmail
      */
-    public Reunion(long id, String nameReunion, String heureReunion, String nameSalleReunion,
+    public Reunion(long id, String nameReunion, String libelleReunionReunion,String heureReunion, String dateReunion, String nameSalleReunion,
                    List<String> addEmail) {
         this.id = id;
         this.nameReunion = nameReunion;
+        this.libelleReunion = libelleReunionReunion;
         this.heureReunion = heureReunion;
+        this.dateReunion = dateReunion;
         this.nameSalleReunion = nameSalleReunion;
         this.mailAddresse = addEmail;
     }
@@ -66,6 +74,10 @@ public class Reunion {
     public void setHeureReunion(String heureReunion) {
         this.heureReunion = heureReunion;
     }
+
+    public String getDateReunion() { return dateReunion;    }
+
+    public void setDateReunionReunion(String dateReunionReunion) {this.dateReunion = dateReunion;    }
 
     public String getNameSalleReunion() {
         return nameSalleReunion;
