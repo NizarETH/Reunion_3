@@ -29,6 +29,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.reunion_list.AddReunionActivity" />
+        <activity android:name=".ui.reunion_list.DetailReunionActivity" />
     </application>
 
 </manifest>

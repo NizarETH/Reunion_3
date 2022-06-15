@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -74,16 +75,42 @@ public class MyReunionRecyclerViewAdapter extends RecyclerView.Adapter<MyReunion
            holder.mReunionAvatar.setImageTintList(ColorStateList.valueOf(Color.parseColor("#FFB6C1")));
         }
 
+        holder.mainContent.setOnClickListener(new View.OnClickListener() {
+            String emails = "";
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(holder.mainContent.getContext(), DetailReunionActivity.class);
+                i.putExtra("id", reunion.getId());
+                i.putExtra("rname", reunion.getNameReunion());
+                i.putExtra("rlibelle", reunion.getLibelleReunion());
+                i.putExtra("rdate", reunion.getDateReunion());
+                i.putExtra("rheure", reunion.getHeureReunion());
+                i.putExtra("raddresse", reunion.getNameSalleReunion());
+
+                for (int j = 0; j < reunion.getMailAddresse().size(); j++) {
+                    if(j == 0)
+                        emails = reunion.getMailAddresse().get(0);
+                    else
+                        emails = emails + (", "+reunion.getMailAddresse().get(j));
+                }
+
+                i.putExtra("rparticpant",emails);
+
+
+
+                holder.mainContent.getContext().startActivity(i);
+            }
+        });
+
         holder.mDeleteButton.setOnClickListener(new OnClickListener() {
-           @Override
+
+            @Override
            public void onClick(View v) {
-               mReunion.remove(holder.getAbsoluteAdapterPosition());
-               notifyItemRemoved(holder.getAbsoluteAdapterPosition());
-
+                    mReunion.remove(holder.getAbsoluteAdapterPosition());
+                    notifyItemRemoved(holder.getAbsoluteAdapterPosition());
            }
-             }
-        );
 
+             });
 
     }
 

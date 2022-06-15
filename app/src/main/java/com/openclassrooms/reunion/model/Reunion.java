@@ -67,6 +67,14 @@ public class Reunion {
         this.nameReunion = nameReunion;
     }
 
+    public String getLibelleReunion() {
+        return libelleReunion;
+    }
+
+    public void setLibelleReunion(String libelleReunion) {
+        this.libelleReunion = libelleReunion;
+    }
+
     public String getHeureReunion() {
         return heureReunion;
     }
@@ -77,7 +85,7 @@ public class Reunion {
 
     public String getDateReunion() { return dateReunion;    }
 
-    public void setDateReunionReunion(String dateReunionReunion) {this.dateReunion = dateReunion;    }
+    public void setDateReunion(String dateReunionReunion) {this.dateReunion = dateReunion;    }
 
     public String getNameSalleReunion() {
         return nameSalleReunion;

@@ -54,7 +54,7 @@ public class EntrevoisinTest {
         //test vérifiant que lorsqu’on clique sur un élément de la liste, l’écran de
         //détails est bien lancé ;
         Intents.init();
-        onView(withId(R.id.list_neighbours)).perform(
+        onView(withId(R.id.list_reunion)).perform(
                 RecyclerViewActions.actionOnItemAtPosition(0,click()));
 
         onView(withId(R.id.container_view)).check(matches(isDisplayed()));
@@ -71,33 +71,11 @@ public class EntrevoisinTest {
         // test vérifiant que lorsque l'on clique sur la flèche,
         // la liste s'affiche correctement
 
-        onView(withId(R.id.list_neighbours)).perform(
+        onView(withId(R.id.list_reunion)).perform(
                 RecyclerViewActions.actionOnItemAtPosition(0,click()));
         onView(withId(R.id.layout1)).check(matches(isDisplayed()));
         onView(withId(R.id.ReturnButton)).perform(click());
-        onView(withId(R.id.list_neighbours)).check(matches(isDisplayed()));
-    };
-
-    @Test
-    public void checkButtonEtoile(){
-        // test vérifiant que lorsque l'on clique sur le bouton étoile,
-        // la liste favorie s'affiche
-        onView(withId(R.id.list_neighbours)).perform(
-                RecyclerViewActions.actionOnItemAtPosition(0,click()));
-        onView(withId(R.id.button_etoile)).perform(click());
-
-
-        onView(withId(R.id.list_neighbours_favoris)).check(matches(isDisplayed()));
-    };
-    @Test
-    public void checkAvatar(){
-        // test vérifiant que lorsque l'on clique sur le bouton étoile,
-        // la liste principale par défault s'affiche correctement
-
-        onView(withId(R.id.list_neighbours)).perform(
-                RecyclerViewActions.actionOnItemAtPosition(0,click()));
-        onView(withId(R.id.layout1)).check(matches(isDisplayed()));
-        onView(withId(R.id.kb9)).check(matches(isDisplayed()));
+        onView(withId(R.id.list_reunion)).check(matches(isDisplayed()));
     };
 
     @Test
@@ -105,7 +83,7 @@ public class EntrevoisinTest {
         // test vérifiant que lorsque l'on clique sur le bouton étoile,
         // la liste principale par défault s'affiche correctement
 
-        onView(withId(R.id.list_neighbours)).perform(
+        onView(withId(R.id.list_reunion)).perform(
                 RecyclerViewActions.actionOnItemAtPosition(0,click()));
         onView(withId(R.id.layout1)).check(matches(isDisplayed()));
         onView(withId(R.id.nameLyt)).check(matches(CoreMatchers.not(withText(""))));
