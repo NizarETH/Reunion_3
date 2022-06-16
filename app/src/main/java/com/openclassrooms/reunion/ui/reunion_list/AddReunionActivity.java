@@ -154,8 +154,6 @@ public class AddReunionActivity<nameParticipantInput> extends AppCompatActivity 
             finish();
         }
     });
-
-
     }
 // User click on 'Select Date' button.
     private void buttonSelectDate() {

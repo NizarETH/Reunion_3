@@ -37,7 +37,7 @@ public class DetailReunionActivity extends FragmentActivity {
         EditText heure_Reunion = findViewById(R.id.iheure_Reunion);
         EditText name_Salle_Reunion = findViewById(R.id.inom_salle_Reunion);
         EditText participant_Reunion = findViewById(R.id.iparticipant_Reunion);
-        Button ret_arr = findViewById(R.id.return_back);
+        Button ret_arr = findViewById(R.id.returnback);
 
         name_Reunion.setText(nameR);
         libelle_Reunion.setText(libelleR);

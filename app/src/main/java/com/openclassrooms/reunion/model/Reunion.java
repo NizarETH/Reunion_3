@@ -127,13 +127,18 @@ public class Reunion {
  public static Comparator<Reunion> ReunionDateAscComparator = new Comparator<Reunion>() {
      @Override
      public int compare(Reunion reunion, Reunion r1) {
-         return reunion.getHeureReunion().compareTo(r1.getHeureReunion());
+         String reunionHD=reunion.getDateReunion()+reunion.getHeureReunion();
+         String r1HD=r1.getDateReunion()+r1.getHeureReunion();
+         return (reunionHD.compareTo(r1HD));
+
      }
  };
   public static Comparator<Reunion> ReunionDateDesComparator = new Comparator<Reunion>() {
          @Override
          public int compare(Reunion reunion, Reunion r1) {
-             return r1.getHeureReunion().compareTo(reunion.getHeureReunion());
+             String reunionHD=reunion.getDateReunion()+reunion.getHeureReunion();
+             String r1HD=r1.getDateReunion()+r1.getHeureReunion();
+             return r1HD.compareTo(reunionHD);
          }
  };
     public static Comparator<Reunion> ReunionSalleComparator = new Comparator<Reunion>() {

@@ -1,4 +1,4 @@
-package com.openclassrooms.reunion.neighbour_list;
+package com.openclassrooms.reunion.reunion_list;
 
 
 import static androidx.test.espresso.Espresso.onView;
@@ -27,7 +27,7 @@ import org.junit.runner.RunWith;
  * Test class for list of neighbours
  */
 @RunWith(AndroidJUnit4.class)
-public class NeighboursListTest {
+public class ReunionListTest {
 
     // This is fixed
     private static int ITEMS_COUNT = 12;

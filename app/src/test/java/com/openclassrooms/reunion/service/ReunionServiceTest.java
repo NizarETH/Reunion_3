@@ -44,13 +44,13 @@ public class ReunionServiceTest {
     }
 
     @Test
-    public void testNameReunion() {
+    public void testTriAscDate() {
         Reunion reunion = service.getReunions().get(0);
         assertNotNull(reunion.getNameReunion());
     }
 
     @Test
-    public void testHeureReunion() {
+    public void testTriDesDate() {
         Reunion reunion = service.getReunions().get(0);
         assertNotNull(reunion.getHeureReunion());
     }
@@ -62,7 +62,7 @@ public class ReunionServiceTest {
     }
 
     @Test
-    public void testListeParticipantReunion() {
+    public void testTriLieu() {
         Reunion reunion = service.getReunions().get(0);
         assertNotNull(reunion.getMailAddresse());
     }

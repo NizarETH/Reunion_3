@@ -15,6 +15,7 @@
         android:layout_marginStart="16dp"
         android:layout_margin="10dp"
         app:cardCornerRadius="40dp"
+        android:layout_gravity="center"
         android:src="@drawable/ic_cercle"
         app:tint="@color/dark_sea_green"
         />

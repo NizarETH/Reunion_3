@@ -1,5 +1,7 @@
 package com.openclassrooms.reunion.ui.reunion_list;
 
+import static com.openclassrooms.reunion.ui.reunion_list.Utils.getRandomColor;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.ColorStateList;
@@ -59,6 +61,7 @@ public class MyReunionRecyclerViewAdapter extends RecyclerView.Adapter<MyReunion
         holder.mReunionName.setText(reunion.getNameReunion());
         holder.mReunionHeure.setText(reunion.getHeureReunion());
         holder.mReunionSalle.setText(reunion.getNameSalleReunion());
+        holder.mReunionAvatar.setImageTintList(ColorStateList.valueOf(getRandomColor()));
 
 
       String emails = "";
@@ -71,9 +74,9 @@ public class MyReunionRecyclerViewAdapter extends RecyclerView.Adapter<MyReunion
         }
         holder.listParticipant.setText(emails);
 
-        if (position==0) {
-           holder.mReunionAvatar.setImageTintList(ColorStateList.valueOf(Color.parseColor("#FFB6C1")));
-        }
+  //      if (position==0) {
+  //         holder.mReunionAvatar.setImageTintList(ColorStateList.valueOf(Color.parseColor("#FFB6C1")));
+  //      }
 
         holder.mainContent.setOnClickListener(new View.OnClickListener() {
             String emails = "";
