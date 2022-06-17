@@ -16,7 +16,7 @@ public abstract class DummyReunionGenerator {
 
     public static List<Reunion> DUMMY_REUNION = Arrays.asList(
             new Reunion(2, "Réunion B", "Reunion sur la BDD", "15H00","15/05/2022","Mengalet",
-                    Arrays.asList(new String[]{"carole@hotmail.fr", "Premir2@ymail.fr", "aimeminyem67@gmail.com", "Simon@easynet@fr"})),
+                    Arrays.asList(new String[]{"carole@hotmail.fr", "Premir2@ymail.fr", "aimeminyem67@gmail.com", "Simon@easynet.fr"})),
 
             new Reunion(3, "Réunion C", "Reunion sur tests", "16h00","15/05/2022","Saint-Pierre",
                     Arrays.asList(new String[]{"gousou@hotmail.fr", "minyem@hotmail.fr", "aimeminy@gmail.com"})),

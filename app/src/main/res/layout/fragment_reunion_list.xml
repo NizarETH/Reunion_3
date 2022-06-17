@@ -69,6 +69,8 @@
             android:layout_marginEnd="@dimen/fab_margin"
             android:layout_marginRight="70dp"
             android:layout_marginBottom="16dp"
+            android:src="@drawable/plus"
+            android:tint="@color/white"
             app:backgroundTint="@color/red" />
     </RelativeLayout>
 

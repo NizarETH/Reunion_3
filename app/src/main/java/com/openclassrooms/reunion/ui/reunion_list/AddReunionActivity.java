@@ -213,7 +213,7 @@ public class AddReunionActivity<nameParticipantInput> extends AppCompatActivity 
 
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                heureInput.setText(hourOfDay + ":" + minute );
+                heureInput.setText(hourOfDay + "h" + minute );
                 lastSelectedHour = hourOfDay;
                 lastSelectedMinute = minute;
             }

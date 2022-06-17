@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.fragment.app.FragmentActivity;
 
@@ -31,12 +32,12 @@ public class DetailReunionActivity extends FragmentActivity {
         String participantR=bundle.getStringExtra("rparticpant");
 
 
-        EditText name_Reunion = findViewById(R.id.inom_Reunion);
-        EditText libelle_Reunion = findViewById(R.id.iintitule_Reunion);
-        EditText date_Reunion = findViewById(R.id.idate_Reunion);
-        EditText heure_Reunion = findViewById(R.id.iheure_Reunion);
-        EditText name_Salle_Reunion = findViewById(R.id.inom_salle_Reunion);
-        EditText participant_Reunion = findViewById(R.id.iparticipant_Reunion);
+        TextView name_Reunion = findViewById(R.id.inom_Reunion);
+        TextView libelle_Reunion = findViewById(R.id.iintitule_Reunion);
+        TextView date_Reunion = findViewById(R.id.idate_Reunion);
+        TextView heure_Reunion = findViewById(R.id.iheure_Reunion);
+        TextView name_Salle_Reunion = findViewById(R.id.inom_salle_Reunion);
+        TextView participant_Reunion = findViewById(R.id.iparticipant_Reunion);
         Button ret_arr = findViewById(R.id.returnback);
 
         name_Reunion.setText(nameR);

@@ -32,12 +32,12 @@
             android:layout_height="38dp"
             android:text="Nom Reunion :" />
 
-        <EditText
+        <TextView
             android:id="@+id/inom_Reunion"
             android:layout_width="200dp"
             android:layout_height="38dp"
             android:hint="Nom"
-            android:inputType="textPersonName" />
+            android:textStyle="bold" />
     </LinearLayout>
 
     <LinearLayout
@@ -50,12 +50,12 @@
             android:layout_height="38dp"
             android:text="Intitulé Reunion :" />
 
-        <EditText
+        <TextView
             android:id="@+id/iintitule_Reunion"
             android:layout_width="200dp"
             android:layout_height="38dp"
             android:hint="Intitule"
-            android:inputType="textAutoComplete" />
+            android:textStyle="bold" />
     </LinearLayout>
 
 
@@ -69,12 +69,12 @@
             android:layout_height="50dp"
             android:text="Date Reunion :" />
 
-        <EditText
+        <TextView
             android:id="@+id/idate_Reunion"
             android:layout_width="120dp"
             android:layout_height="50dp"
             android:hint="JJ:MM:AAAA"
-            android:inputType="date" />
+            android:textStyle="bold" />
     </LinearLayout>
 
     <LinearLayout
@@ -87,12 +87,12 @@
             android:layout_height="50dp"
             android:text="Heure Reunion :" />
 
-        <EditText
+        <TextView
             android:id="@+id/iheure_Reunion"
             android:layout_width="100dp"
             android:layout_height="50dp"
             android:hint="HH:MM"
-            android:inputType="time" />
+            android:textStyle="bold" />
 
     </LinearLayout>
 
@@ -107,18 +107,18 @@
             android:text="Nom Salle :" />
 
 
-        <EditText
+        <TextView
             android:id="@+id/inom_salle_Reunion"
             android:layout_width="200dp"
             android:layout_height="38dp"
             android:hint="salle"
-            android:inputType="textAutoComplete" />
+            android:textStyle="bold"/>
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
         <TextView
             android:id="@+id/participants_Reunion"
@@ -126,21 +126,22 @@
             android:layout_height="38dp"
             android:text="Liste participants :" />
 
-        <EditText
+        <TextView
             android:id="@+id/iparticipant_Reunion"
             android:layout_width="200dp"
-            android:layout_height="38dp"
+            android:layout_height="70dp"
             android:hint="Participant"
-            android:inputType="text" />
+            android:textStyle="bold" />
     </LinearLayout>
 
     <Button
         android:id="@+id/returnback"
-        style="@style/Widget.MaterialComponents.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        app:cornerRadius="20dp"
+        app:cornerRadius="50dp"
         android:layout_marginTop="20dp"
-        android:text="Retour"/>
+        android:backgroundTint="@color/blue"
+        android:textColor="@color/white"
+        android:text="Return"/>
 </LinearLayout>
