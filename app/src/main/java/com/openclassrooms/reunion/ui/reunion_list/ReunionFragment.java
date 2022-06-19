@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.appcompat.widget.PopupMenu;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -23,8 +24,10 @@ import com.openclassrooms.reunion.service.ReunionApiService;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.logging.Filter;
 
 
 public class ReunionFragment extends Fragment {
@@ -143,5 +146,74 @@ public class ReunionFragment extends Fragment {
     public void onDeleteReunion(DeleteReunionEvent event) {
         mApiService.deleteReunion(event.reunion);
         initList();
+
+    }
+/*
+    public void filter(String text) {
+        items.clear();
+        if(text.isEmpty()){
+            items.addAll(itemsCopy);
+        } else{
+            text = text.toLowerCase();
+            for(mReunions item: itemsCopy){
+                if(item.name.toLowerCase().contains(text) || item.phone.toLowerCase().contains(text)){
+                    items.add(item);
+                }
+            }
+        }
+        notifyDataSetChanged();
+    }
+
+searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        @Override
+        public boolean onQueryTextSubmit(String query) {
+            adapter.filter(query);
+            return true;
+        }
+
+        @Override
+        public boolean onQueryTextChange(String newText) {
+           mAdapter.filter(newText);
+            return true;
+        }
+    });
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @SuppressWarnings("unchecked")
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+                mReunionsFull = (List<Reunion>) results.values;
+                mAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                List<Reunion> filteredResults = null;
+                if (constraint.length() == 0) {
+                    filteredResults = mReunions;
+                } else {
+                    filteredResults = getFilteredResults(constraint.toString().toLowerCase());
+                }
+
+                FilterResults results = new FilterResults();
+                results.values = filteredResults;
+
+                return results;
+            }
+        };
+ } */
+
+    protected List<Reunion> getFilteredResults(String constraint) {
+        List<Reunion> results = new ArrayList<>();
+
+        for (Reunion item : mReunions) {
+            if (item.getNameReunion().toLowerCase().contains(constraint)) {
+                results.add(item);
+            }
+        }
+        return results;
     }
 }
+//}

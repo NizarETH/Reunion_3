@@ -129,7 +129,9 @@ public class AddReunionActivity<nameParticipantInput> extends AppCompatActivity 
             public void afterTextChanged(Editable s) {
                 if (s.length() > 0)
                     nameInputadd = true;
-                //               addButton.setEnabled(true);
+                else
+                    nameInputadd = false;
+                    enableButton();
             }
         });
 
@@ -147,7 +149,9 @@ public class AddReunionActivity<nameParticipantInput> extends AppCompatActivity 
                 if (s.length() > 0) {
                      nomSalleInputadd = true;
                 }
-                //addButton.setEnabled(true);
+                else
+                nomSalleInputadd = false;
+                enableButton();
             }
         });
 
@@ -165,7 +169,9 @@ public class AddReunionActivity<nameParticipantInput> extends AppCompatActivity 
             public void afterTextChanged(Editable s) {
                 if (s.length() > 0)
                     nameParticipantInputadd = true;
-                //addButton.setEnabled(true);
+               else
+                    nameParticipantInputadd = false;
+                enableButton();
             }
         });
 
@@ -183,7 +189,9 @@ public class AddReunionActivity<nameParticipantInput> extends AppCompatActivity 
             public void afterTextChanged(Editable s) {
                 if (s.length() > 0)
                     dateInputadd = true;
-                //addButton.setEnabled(true);
+                else
+                    dateInputadd = false;
+                enableButton();
             }
         });
 
@@ -202,42 +210,47 @@ public class AddReunionActivity<nameParticipantInput> extends AppCompatActivity 
                 if (s.length() > 0) {
                     heureInputadd = true;
                 }
-                   //addButton.setEnabled(true);
+                else
+                    heureInputadd = false;
+                enableButton();
+
             }
             });
 
         // Condition pour ajouter la reunion
-       if((nomSalleInputadd)&&(nameInputadd) &&(heureInputadd)&&(dateInputadd)&&(nameParticipantInputadd))
-        {addButton.setEnabled(true);}
+
 
     addButton.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
 
-            String nameR =   nameInput.getText().toString();
-            String heureR = heureInput.getText().toString();
-            String dateR = dateInput.getText().toString();
-            String nomSalleR = nomSalleInput.getText().toString();
 
-            List <String> participantR = new ArrayList<>();
-            String values = nameParticipantInput.getText().toString();
-            String[] emails = values.split(",");
-            for (int i = 0; i <emails.length ; i++) {
-                participantR.add(emails[i]);
+
+                String nameR = nameInput.getText().toString();
+                String heureR = heureInput.getText().toString();
+                String dateR = dateInput.getText().toString();
+                String nomSalleR = nomSalleInput.getText().toString();
+
+                List<String> participantR = new ArrayList<>();
+                String values = nameParticipantInput.getText().toString();
+                String[] emails = values.split(",");
+                for (int i = 0; i < emails.length; i++) {
+                    participantR.add(emails[i]);
+                }
+
+                Reunion mReunion = new Reunion(System.currentTimeMillis(),
+                        nameR,
+                        heureR,
+                        dateR,
+                        nomSalleR,
+                        participantR);
+
+                mApiService.createReunion(mReunion);
+                finish();
             }
 
-            Reunion mReunion= new Reunion(System.currentTimeMillis(),
-                    nameR,
-                    heureR,
-                    dateR,
-                    nomSalleR,
-                    participantR);
-            
-                    mApiService.createReunion(mReunion);
 
 
-            finish();
-        }
     });
     }
 // User click on 'Select Date' button.
@@ -333,4 +346,11 @@ public class AddReunionActivity<nameParticipantInput> extends AppCompatActivity 
         Intent intent = new Intent(activity, AddReunionActivity.class);
         ActivityCompat.startActivity(activity, intent, null);
     }
-}
+
+    private void enableButton() {
+        if ((nomSalleInputadd) && (nameInputadd) && (heureInputadd) && (dateInputadd) && (nameParticipantInputadd)) {
+            addButton.setEnabled(true);
+        }
+        else
+            addButton.setEnabled(false);
+    }}
