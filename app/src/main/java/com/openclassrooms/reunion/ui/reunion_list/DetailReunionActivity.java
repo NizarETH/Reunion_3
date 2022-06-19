@@ -33,7 +33,6 @@ public class DetailReunionActivity extends FragmentActivity {
 
 
         TextView name_Reunion = findViewById(R.id.inom_Reunion);
-        TextView libelle_Reunion = findViewById(R.id.iintitule_Reunion);
         TextView date_Reunion = findViewById(R.id.idate_Reunion);
         TextView heure_Reunion = findViewById(R.id.iheure_Reunion);
         TextView name_Salle_Reunion = findViewById(R.id.inom_salle_Reunion);
@@ -41,7 +40,6 @@ public class DetailReunionActivity extends FragmentActivity {
         Button ret_arr = findViewById(R.id.returnback);
 
         name_Reunion.setText(nameR);
-        libelle_Reunion.setText(libelleR);
         date_Reunion.setText(dateR);
         heure_Reunion.setText(heureR);
         name_Salle_Reunion.setText(nameSalleR);

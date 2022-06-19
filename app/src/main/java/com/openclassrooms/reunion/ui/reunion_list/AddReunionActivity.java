@@ -34,7 +34,6 @@ public class AddReunionActivity<nameParticipantInput> extends AppCompatActivity 
 
 
     TextInputEditText nameInput;
-    TextInputEditText libelleInput;
     EditText dateInput;
     Button button_Date;
     TextInputEditText nomSalleInput;
@@ -51,8 +50,15 @@ public class AddReunionActivity<nameParticipantInput> extends AppCompatActivity 
     private int lastSelectedHour = -1;
     private int lastSelectedMinute = -1;
 
+    public boolean nameInputadd;
+    public boolean nomSalleInputadd;
+    public boolean nameParticipantInputadd ;
+    public boolean dateInputadd ;
+    public boolean heureInputadd ;
+
     public MaterialButton addButton;
     private ReunionApiService mApiService;
+
 
 
     @Override
@@ -62,7 +68,6 @@ public class AddReunionActivity<nameParticipantInput> extends AppCompatActivity 
         mApiService = DI.getReunionApiService();
 
         nameInput =  (TextInputEditText)findViewById(R.id.inom_Reunion);
-        libelleInput =(TextInputEditText)findViewById(R.id.iintitule_Reunion);
         button_Date= (Button) findViewById(R.id.date_Reunion);
         button_Heure= (Button) findViewById(R.id.heure_Reunion);
         checBoxDate= (CheckBox) findViewById(R.id.checkBox_isSpinnerMode);
@@ -113,22 +118,103 @@ public class AddReunionActivity<nameParticipantInput> extends AppCompatActivity 
 
         nameInput.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) { }
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
             @Override
             public void afterTextChanged(Editable s) {
-                if(s.length()>0)
-                addButton.setEnabled(true);
+                if (s.length() > 0)
+                    nameInputadd = true;
+                //               addButton.setEnabled(true);
             }
         });
+
+        nomSalleInput.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (s.length() > 0) {
+                     nomSalleInputadd = true;
+                }
+                //addButton.setEnabled(true);
+            }
+        });
+
+        nameParticipantInput.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (s.length() > 0)
+                    nameParticipantInputadd = true;
+                //addButton.setEnabled(true);
+            }
+        });
+
+        dateInput.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (s.length() > 0)
+                    dateInputadd = true;
+                //addButton.setEnabled(true);
+            }
+        });
+
+        heureInput.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (s.length() > 0) {
+                    heureInputadd = true;
+                }
+                   //addButton.setEnabled(true);
+            }
+            });
+
+        // Condition pour ajouter la reunion
+       if((nomSalleInputadd)&&(nameInputadd) &&(heureInputadd)&&(dateInputadd)&&(nameParticipantInputadd))
+        {addButton.setEnabled(true);}
 
     addButton.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
 
             String nameR =   nameInput.getText().toString();
-            String libelleR = libelleInput.getText().toString();
             String heureR = heureInput.getText().toString();
             String dateR = dateInput.getText().toString();
             String nomSalleR = nomSalleInput.getText().toString();
@@ -142,7 +228,6 @@ public class AddReunionActivity<nameParticipantInput> extends AppCompatActivity 
 
             Reunion mReunion= new Reunion(System.currentTimeMillis(),
                     nameR,
-                    libelleR,
                     heureR,
                     dateR,
                     nomSalleR,

@@ -31,6 +31,7 @@ public class ReunionFragment extends Fragment {
 
     private ReunionApiService mApiService;
     private List<Reunion> mReunions;
+    private List<Reunion> mReunionsFull;
     private RecyclerView mRecyclerView;
     Reunion reunion;
     MyReunionRecyclerViewAdapter mAdapter;
@@ -71,17 +72,11 @@ public class ReunionFragment extends Fragment {
                         switch (item.getItemId()) {
                             case R.id.menu_dateAsc: {
                                 Collections.sort(mReunions, Reunion.ReunionDateAscComparator);
-                           //     Toast.makeText(this, "Sort heureReunion ascending",Toast.LENGTH_SHORT).show();
 
                                mAdapter.notifyDataSetChanged();
                                 return true;
                             }
-                            case R.id.menu_dateDes: {
-                                Collections.sort(mReunions, Reunion.ReunionDateDesComparator);
-                                // Toast.makeText(this,"Sort heureReunion descending",Toast.LENGTH_SHORT).show();
-                                mAdapter.notifyDataSetChanged();
-                                return true;
-                            }
+
                             case R.id.menu_lieu: {
                                 Collections.sort(mReunions, Reunion.ReunionSalleComparator);
                                 //Toast.makeText(this,"Sort nameSalleReunion ascending",Toast.LENGTH_SHORT).show();

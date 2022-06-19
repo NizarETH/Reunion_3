@@ -1,18 +1,23 @@
 package com.openclassrooms.reunion.reunion_list;
 
+import static androidx.test.espresso.Espresso.onData;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.hasMinimumChildCount;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.isEnabled;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
 
 import static com.openclassrooms.reunion.utils.RecyclerViewItemCountAssertion.withItemCount;
 
+import com.openclassrooms.reunion.model.Reunion;
 import com.openclassrooms.reunion.ui.reunion_list.ListReunionActivity;
 
+import androidx.test.espresso.ViewAction;
+import androidx.test.espresso.assertion.ViewAssertions;
 import androidx.test.espresso.contrib.RecyclerViewActions;
 import androidx.test.espresso.intent.Intents;
 import androidx.test.espresso.matcher.ViewMatchers;
@@ -33,6 +38,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 
 
@@ -48,6 +54,8 @@ public class ReunionTest {
     @Rule
     public ActivityTestRule<ListReunionActivity> mActivityRule =
             new ActivityTestRule(ListReunionActivity.class);
+
+
 
     @Before
     public void setUp() {
@@ -90,10 +98,9 @@ public class ReunionTest {
         // la liste pricipale s'affiche correctement avec un élément en plus
 
         onView(ViewMatchers.withId(R.id.list_reunion)).check(withItemCount(ITEMS_COUNT));
-
-        onView(withId(R.id.list_reunion)).perform(
-                RecyclerViewActions.actionOnItemAtPosition(0,click()));
+        onView(withId(R.id.add_reunion)).perform(click());
         onView(withId(R.id.layout1)).check(matches(isDisplayed()));
+        //  addButton.setEnabled(true)
         onView(withId(R.id.create)).perform(click());
         onView(withId(R.id.list_reunion)).check(matches(isDisplayed()));
         onView(ViewMatchers.withId(R.id.list_reunion)).check(withItemCount(ITEMS_COUNT+1));
@@ -140,8 +147,8 @@ public class ReunionTest {
     public void mTriDateDes(){
         onView(withId(R.id.buttonFilter)).perform(click());
         onView(withId(R.id.menu_dateDes)).perform(click());
-    //    onView(ViewMatchers.withId(R.id.list_reunion)).
-    //            check(ViewMatchers.<String>containsInAnyOrder((Collection<Matcher<? super String>>) withId(R.id.item_list_heureR)));
+     //   onView(withId(R.id.list_reunion)).
+       //         check(ViewAssertions.selectedDescendantsMatch(withId(R.id.item_list_heureR)));
     }
 
     /**

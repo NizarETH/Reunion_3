@@ -74,10 +74,6 @@ public class MyReunionRecyclerViewAdapter extends RecyclerView.Adapter<MyReunion
         }
         holder.listParticipant.setText(emails);
 
-  //      if (position==0) {
-  //         holder.mReunionAvatar.setImageTintList(ColorStateList.valueOf(Color.parseColor("#FFB6C1")));
-  //      }
-
         holder.mainContent.setOnClickListener(new View.OnClickListener() {
             String emails = "";
             @Override
@@ -85,7 +81,6 @@ public class MyReunionRecyclerViewAdapter extends RecyclerView.Adapter<MyReunion
                 Intent i = new Intent(holder.mainContent.getContext(), DetailReunionActivity.class);
                 i.putExtra("id", reunion.getId());
                 i.putExtra("rname", reunion.getNameReunion());
-                i.putExtra("rlibelle", reunion.getLibelleReunion());
                 i.putExtra("rdate", reunion.getDateReunion());
                 i.putExtra("rheure", reunion.getHeureReunion());
                 i.putExtra("raddresse", reunion.getNameSalleReunion());

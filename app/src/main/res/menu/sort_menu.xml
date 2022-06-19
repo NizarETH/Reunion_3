@@ -4,14 +4,13 @@
 
     <item
         android:id="@+id/menu_dateAsc"
-        android:icon="@drawable/filter"
-        android:title="DateAsc" />
-    <item
-        android:id="@+id/menu_dateDes"
-        android:icon="@drawable/filter"
-        android:title="DateDesc" />
+        app:showAsAction="ifRoom|collapseActionView"
+        android:title="Date"
+        />
+
     <item
         android:id="@+id/menu_lieu"
-        android:icon="@drawable/filter"
-        android:title="Lieu" />
+        android:title="Lieu"
+        app:showAsAction="ifRoom|collapseActionView"
+        />
 </menu>

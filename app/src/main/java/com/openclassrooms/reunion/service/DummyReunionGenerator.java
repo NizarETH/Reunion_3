@@ -1,40 +1,31 @@
 package com.openclassrooms.reunion.service;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
 import com.openclassrooms.reunion.model.Reunion;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.Iterator;
+import java.util.Collections;
 import java.util.List;
-import java.util.ListIterator;
 
 public abstract class DummyReunionGenerator {
 
     public static List<Reunion> DUMMY_REUNION = Arrays.asList(
-            new Reunion(2, "Réunion B", "Reunion sur la BDD", "15H00","15/05/2022","Mengalet",
-                    Arrays.asList(new String[]{"carole@hotmail.fr", "Premir2@ymail.fr", "aimeminyem67@gmail.com", "Simon@easynet.fr"})),
+            new Reunion( 1,"Reunion A","15h00","15/07/2022", "Mangallet",
+                    Collections.singletonList("remir@hotmail.fr,tera@ymail.fr")),
+            new Reunion( 2,"Reunion B","16h00","15/07/2022", "Petit_Louis",
+                    Collections.singletonList("rmir@hotmail.fr,tera@ymail.fr,mongars@fab.dr")),
+            new Reunion( 3,"Reunion C","17h00","15/07/2022", "Petit_Louis",
+                    Collections.singletonList("toto@hotmail.fr,ferrara@ymail.com,tarani@fb.fr")),
+            new Reunion( 4,"Reunion D","10h00","16/07/2022", "Mangallet",
+                    Collections.singletonList("rmir@hotmail.fr,remir@hotmail.fr")),
+            new Reunion( 5,"Reunion E","11h00","16/07/2022", "Crypte",
+                    Collections.singletonList("rmir@hotmail.fr,tera@ymail.fr,mongars@fab.dr")),
+            new Reunion( 6,"Reunion F","14h00","16/07/2022", "Petit_Louis",
+                    Collections.singletonList("rmir2@hotmail.fr,tarato@gmail.fr,monfils@gmail.fr")),
+            new Reunion( 7,"Reunion G","9h00","17/07/2022", "Crypte",
+                    Collections.singletonList("remir@hotmail.fr,tarato@gmail.fr"))
 
-            new Reunion(3, "Réunion C", "Reunion sur tests", "16h00","15/05/2022","Saint-Pierre",
-                    Arrays.asList(new String[]{"gousou@hotmail.fr", "minyem@hotmail.fr", "aimeminy@gmail.com"})),
-
-            new Reunion(4, "Réunion D", "Reunion sur la pub", "17h00","15/05/2022","Du_Mont",
-                    Arrays.asList(new String[]{"gousou@hotmail.fr", "minyem@hotmail.fr", "aimeminy@gmail.com"})),
-
-            new Reunion(5, "Réunion F", "Reunion finance", "09h00","16/05/2022","Du_Mont",
-                    Arrays.asList(new String[]{"gousou@hotmail.fr", "minyem@hotmail.fr", "aimeminy@gmail.com"})),
-
-            new Reunion(6, "Réunion G", "Reunion budget", "10h00","16/05/2022","St_Exupéri",
-                    Arrays.asList(new String[]{"gous@hotmail.fr", "ngui@camtel.fr", "aimeminy@gmail.com"})),
-
-            new Reunion(7, "Réunion H", "Reunion teamdev", "11h00","16/05/2022","Saintserin",
-                    Arrays.asList(new String[]{"amougou@hotmail.fr", "belinga@camtel.fr", "bot@gmail.com"})),
-
-            new Reunion(1, "Réunion A", "Reunion mise en recette", "14h00","17/05/2022","Saint_Pierre",
-                    Arrays.asList(new String[]{"caroline@hotmail.fr", "remir2@hotmail.fr", "aimeminyem67@gmail.com"})));
+    );
 
     static List<Reunion> generateReunion() {
         return new ArrayList<>(DUMMY_REUNION);
