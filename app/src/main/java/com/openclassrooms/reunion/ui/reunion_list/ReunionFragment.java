@@ -148,72 +148,55 @@ public class ReunionFragment extends Fragment {
         initList();
 
     }
-/*
-    public void filter(String text) {
-        items.clear();
-        if(text.isEmpty()){
-            items.addAll(itemsCopy);
-        } else{
-            text = text.toLowerCase();
-            for(mReunions item: itemsCopy){
-                if(item.name.toLowerCase().contains(text) || item.phone.toLowerCase().contains(text)){
-                    items.add(item);
-                }
-            }
-        }
-        notifyDataSetChanged();
-    }
 
-searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-        @Override
-        public boolean onQueryTextSubmit(String query) {
-            adapter.filter(query);
-            return true;
-        }
+    private Filter fRecords;
 
-        @Override
-        public boolean onQueryTextChange(String newText) {
-           mAdapter.filter(newText);
-            return true;
-        }
-    });
-
+    //return the filter class object
     @Override
     public Filter getFilter() {
-        return new Filter() {
-            @SuppressWarnings("unchecked")
-            @Override
-            protected void publishResults(CharSequence constraint, FilterResults results) {
-                mReunionsFull = (List<Reunion>) results.values;
-                mAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            protected FilterResults performFiltering(CharSequence constraint) {
-                List<Reunion> filteredResults = null;
-                if (constraint.length() == 0) {
-                    filteredResults = mReunions;
-                } else {
-                    filteredResults = getFilteredResults(constraint.toString().toLowerCase());
-                }
-
-                FilterResults results = new FilterResults();
-                results.values = filteredResults;
-
-                return results;
-            }
-        };
- } */
-
-    protected List<Reunion> getFilteredResults(String constraint) {
-        List<Reunion> results = new ArrayList<>();
-
-        for (Reunion item : mReunions) {
-            if (item.getNameReunion().toLowerCase().contains(constraint)) {
-                results.add(item);
-            }
-        }
-        return results;
+        if(fRecords == null) fRecords = (Filter) new RecordFilter();
+        return fRecords;
     }
+
+    //filter class
+    private class RecordFilter {
+
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+
+            FilterResults results = new FilterResults();
+
+            //Implement filter logic
+            // if edittext is null return the actual list
+            if (constraint == null || constraint.length() == 0) {
+                //No need for filter
+                results.values = mReunionsFull;
+                results.count = mReunionsFull.size();
+
+            } else {
+                //Need Filter
+                // it matches the text  entered in the edittext and set the data in adapter list
+                ArrayList<Reunion> mReunionsFull = new ArrayList<Reunion>();
+
+                for (Reunion s : mReunionsFull) {
+                    if (s.getNameSalleReunion().trim().contains(constraint.toString().toUpperCase().trim())) {
+                        mReunionsFull.add(s);
+                    }
+                }
+                results.values = mReunionsFull;
+                results.count = mReunionsFull.size();
+            }
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint,FilterResults results) {
+
+            //it set the data from filter to adapter list and refresh the recyclerview adapter
+            mReunionsFull = (ArrayList<Reunion>) results.values;
+            mAdapter.notifyDataSetChanged();
+        }
+    }
+}
 }
 //}

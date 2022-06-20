@@ -70,11 +70,10 @@ public class AddReunionActivity<nameParticipantInput> extends AppCompatActivity 
         nameInput =  (TextInputEditText)findViewById(R.id.inom_Reunion);
         button_Date= (Button) findViewById(R.id.date_Reunion);
         button_Heure= (Button) findViewById(R.id.heure_Reunion);
-        checBoxDate= (CheckBox) findViewById(R.id.checkBox_isSpinnerMode);
+       // checBoxDate= (CheckBox) findViewById(R.id.checkBox_isSpinnerMode);
         dateInput = (EditText)findViewById(R.id.idate_Reunion);
         heureInput = (EditText)findViewById(R.id.iheure_Reunion);
-        checBoxheure= (CheckBox) findViewById(R.id.checkBoxH_isSpinnerMode);
-        checBoxHeurePlus= (CheckBox) findViewById(R.id.checkBox_is24HView);
+    //    checBoxheure= (CheckBox) findViewById(R.id.checkBoxH_isSpinnerMode);
         nomSalleInput = (TextInputEditText)findViewById(R.id.inom_salle_Reunion);
         nameParticipantInput = (TextInputEditText)findViewById(R.id.iparticipant_Reunion);
         addButton = findViewById(R.id.create);
@@ -255,7 +254,7 @@ public class AddReunionActivity<nameParticipantInput> extends AppCompatActivity 
     }
 // User click on 'Select Date' button.
     private void buttonSelectDate() {
-        final boolean isSpinnerMode = this.checBoxDate.isChecked();
+   //     final boolean isSpinnerMode = this.checBoxDate.isChecked();
 
         // Date Select Listener.
         DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
@@ -274,18 +273,9 @@ public class AddReunionActivity<nameParticipantInput> extends AppCompatActivity 
 
         DatePickerDialog datePickerDialog = null;
 
-        if (isSpinnerMode) {
-            // Create DatePickerDialog:
-            datePickerDialog = new DatePickerDialog(this,
-                    android.R.style.Theme_Holo_Light_Dialog_NoActionBar,
+        datePickerDialog = new DatePickerDialog(this,
                     dateSetListener, lSYear, lSMonth, lastSelectedDayOfMonth);
-        }
-        else {
-            datePickerDialog = new DatePickerDialog(this,
-                    dateSetListener, lSYear, lSMonth, lastSelectedDayOfMonth);
-        }
 
-        // Show
         datePickerDialog.show();
     }
     /**
@@ -296,15 +286,15 @@ public class AddReunionActivity<nameParticipantInput> extends AppCompatActivity 
         return "https://i.pravatar.cc/150?u="+ System.currentTimeMillis();
     }
 
-    private void buttonSelectTime()  {
+   private void buttonSelectTime()  {
         if(this.lastSelectedHour == -1)  {
             // Get Current Time
             final Calendar c = Calendar.getInstance();
             this.lastSelectedHour = c.get(Calendar.HOUR_OF_DAY);
             this.lastSelectedMinute = c.get(Calendar.MINUTE);
         }
-        final boolean is24HView = this.checBoxHeurePlus.isChecked();
-        final boolean isSpinnerMode = this.checBoxheure.isChecked();
+   //     final boolean is24HView = false;
+  //      final boolean isSpinnerMode = false;
 
         // Time Set Listener.
         TimePickerDialog.OnTimeSetListener timeSetListener = new TimePickerDialog.OnTimeSetListener() {
@@ -319,21 +309,21 @@ public class AddReunionActivity<nameParticipantInput> extends AppCompatActivity 
 
         // Create TimePickerDialog:
         TimePickerDialog timePickerDialog = null;
-
+       timePickerDialog = new TimePickerDialog(this,
+               timeSetListener, lastSelectedHour, lastSelectedMinute, true);
+       timePickerDialog.show();
         // TimePicker in Spinner Mode:
-        if(isSpinnerMode)  {
+       /* if(isSpinnerMode)  {
             timePickerDialog = new TimePickerDialog(this,
                     android.R.style.Theme_Holo_Light_Dialog_NoActionBar,
                     timeSetListener, lastSelectedHour, lastSelectedMinute, is24HView);
         }
         // TimePicker in Clock Mode (Default):
-        else  {
-            timePickerDialog = new TimePickerDialog(this,
-                    timeSetListener, lastSelectedHour, lastSelectedMinute, is24HView);
-        }
+        else  {*/
 
-        // Show
-        timePickerDialog.show();
+        //}
+
+
     }
 
 
