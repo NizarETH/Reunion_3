@@ -14,6 +14,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -30,6 +32,7 @@ import com.openclassrooms.reunion.model.Reunion;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -37,14 +40,17 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MyReunionRecyclerViewAdapter extends RecyclerView.Adapter<MyReunionRecyclerViewAdapter.ViewHolder> {
+public class MyReunionRecyclerViewAdapter extends RecyclerView.Adapter<MyReunionRecyclerViewAdapter.ViewHolder> implements Filterable {
 
     private List<Reunion> mReunion;
+    private List<Reunion> FullList;
     private View view;
 
 
     public MyReunionRecyclerViewAdapter(List<Reunion> items) {
-        mReunion = items;
+        this. mReunion = items;
+
+        FullList = new ArrayList<>(items);
     }
 
     @Override
@@ -148,5 +154,34 @@ public class MyReunionRecyclerViewAdapter extends RecyclerView.Adapter<MyReunion
         }
     }
 
+    @Override
+    public Filter getFilter() {
+        return Searched_Filter;
+    }
+    private Filter Searched_Filter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            ArrayList<Reunion> filteredList = new ArrayList<>();
+            if (constraint == null || constraint.length() == 0) {
+                filteredList.addAll(FullList);
+            } else {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+                for (Reunion item : FullList) {
+                    if (item.getNameReunion().toLowerCase().contains(filterPattern)) {
+                        filteredList.add(item);
+                    }
+                }
+            }
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+            return results;
+        }
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            mReunion.clear();
+            mReunion.addAll((ArrayList) results.values);
+            notifyDataSetChanged();
+        }
+    };
 
 }

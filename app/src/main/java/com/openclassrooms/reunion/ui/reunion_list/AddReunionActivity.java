@@ -1,5 +1,7 @@
 package com.openclassrooms.reunion.ui.reunion_list;
 
+import static com.openclassrooms.reunion.ui.reunion_list.Utils.handleDay;
+
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
@@ -12,6 +14,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.TimePicker;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,15 +37,14 @@ public class AddReunionActivity<nameParticipantInput> extends AppCompatActivity 
 
 
     TextInputEditText nameInput;
-    EditText dateInput;
-    Button button_Date;
+    TextView dateInput;
+    TextView button_Date;
     TextInputEditText nomSalleInput;
     TextInputEditText nameParticipantInput;
-    CheckBox checBoxDate;
-    Button button_Heure;
-    EditText heureInput;
-    CheckBox checBoxheure;
-    CheckBox  checBoxHeurePlus;
+
+    TextView button_Heure;
+    TextView heureInput;
+
 
     private int lSYear;
     private int lSMonth;
@@ -68,17 +70,17 @@ public class AddReunionActivity<nameParticipantInput> extends AppCompatActivity 
         mApiService = DI.getReunionApiService();
 
         nameInput =  (TextInputEditText)findViewById(R.id.inom_Reunion);
-        button_Date= (Button) findViewById(R.id.date_Reunion);
-        button_Heure= (Button) findViewById(R.id.heure_Reunion);
+        button_Date= (TextView) findViewById(R.id.date_Reunion);
+        button_Heure= (TextView) findViewById(R.id.heure_Reunion);
        // checBoxDate= (CheckBox) findViewById(R.id.checkBox_isSpinnerMode);
-        dateInput = (EditText)findViewById(R.id.idate_Reunion);
-        heureInput = (EditText)findViewById(R.id.iheure_Reunion);
+        dateInput = (TextView)findViewById(R.id.idate_Reunion);
+        heureInput = (TextView)findViewById(R.id.iheure_Reunion);
     //    checBoxheure= (CheckBox) findViewById(R.id.checkBoxH_isSpinnerMode);
         nomSalleInput = (TextInputEditText)findViewById(R.id.inom_salle_Reunion);
         nameParticipantInput = (TextInputEditText)findViewById(R.id.iparticipant_Reunion);
         addButton = findViewById(R.id.create);
 
-        this.button_Date.setOnClickListener(new View.OnClickListener() {
+        this.dateInput.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 buttonSelectDate();
@@ -91,7 +93,7 @@ public class AddReunionActivity<nameParticipantInput> extends AppCompatActivity 
         this.lSMonth = c.get(Calendar.MONTH);
         this.lastSelectedDayOfMonth = c.get(Calendar.DAY_OF_MONTH);
 
-        this.button_Heure.setOnClickListener(new View.OnClickListener() {
+        this.heureInput.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 buttonSelectTime();
@@ -256,35 +258,24 @@ public class AddReunionActivity<nameParticipantInput> extends AppCompatActivity 
     private void buttonSelectDate() {
 
 
-        // Date Select Listener.
-        DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this,
+                new DatePickerDialog.OnDateSetListener() {
 
-            @Override
-            public void onDateSet(DatePicker view, int year,
-                                  int monthOfYear, int dayOfMonth) {
+                    @Override
+                    public void onDateSet(DatePicker view, int year,
+                                          int monthOfYear, int dayOfMonth) {
 
-                dateInput.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+                        dateInput.setText(handleDay(dayOfMonth) + "-" + handleDay((monthOfYear + 1)) + "-" + year);
 
-                lSYear = year;
-                lSMonth = monthOfYear;
-                lastSelectedDayOfMonth = dayOfMonth;
-            }
-        };
-
-        DatePickerDialog datePickerDialog = null;
-
-        datePickerDialog = new DatePickerDialog(this,
-                    dateSetListener, lSYear, lSMonth, lastSelectedDayOfMonth);
+                        lSYear = year;
+                        lSMonth = monthOfYear;
+                        lastSelectedDayOfMonth = dayOfMonth;
+                    }
+                }, lSYear, lSMonth, lastSelectedDayOfMonth);
 
         datePickerDialog.show();
     }
-    /**
-     * Generate a random image. Useful to mock image picker
-     * @return String
-     */
-    String randomImage() {
-        return "https://i.pravatar.cc/150?u="+ System.currentTimeMillis();
-    }
+
 
    private void buttonSelectTime()  {
         if(this.lastSelectedHour == -1)  {
@@ -295,32 +286,15 @@ public class AddReunionActivity<nameParticipantInput> extends AppCompatActivity 
         }
 
 
-        // Time Set Listener.
-        TimePickerDialog.OnTimeSetListener timeSetListener = new TimePickerDialog.OnTimeSetListener() {
 
-            @Override
-            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                heureInput.setText(hourOfDay + "h" + minute );
-                lastSelectedHour = hourOfDay;
-                lastSelectedMinute = minute;
-            }
-        };
-
-        // Create TimePickerDialog:
-        TimePickerDialog timePickerDialog = null;
-       timePickerDialog = new TimePickerDialog(this,
-               timeSetListener, lastSelectedHour, lastSelectedMinute, true);
+       TimePickerDialog  timePickerDialog = new TimePickerDialog(this,
+               (view, hourOfDay, minute) -> {
+                   heureInput.setText(handleDay(hourOfDay) + "h" + handleDay(minute) );
+                   lastSelectedHour = hourOfDay;
+                   lastSelectedMinute = minute;
+               }, lastSelectedHour, lastSelectedMinute, true);
        timePickerDialog.show();
-        // TimePicker in Spinner Mode:
-       /* if(isSpinnerMode)  {
-            timePickerDialog = new TimePickerDialog(this,
-                    android.R.style.Theme_Holo_Light_Dialog_NoActionBar,
-                    timeSetListener, lastSelectedHour, lastSelectedMinute, is24HView);
-        }
-        // TimePicker in Clock Mode (Default):
-        else  {*/
 
-        //}
 
 
     }

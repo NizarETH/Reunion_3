@@ -36,4 +36,13 @@ public class Utils {
         return popup;
     }
 
+    public static String handleDay(int day)
+    {
+
+        if(day<=9)
+            return String.valueOf(0)+String.valueOf(day);
+        else
+            return String.valueOf(day);
+    }
+
 }

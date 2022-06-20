@@ -4,9 +4,9 @@
 
     <item
         android:id="@+id/menu_date"
-        app:showAsAction="ifRoom|collapseActionView"
         android:title="Date"
-        />
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="ifRoom|collapseActionView" />
 
     <item
         android:id="@+id/menu_lieu"
@@ -16,7 +16,9 @@
 
     <item
         android:id="@+id/menu_init"
-        android:title="Liste_Init"
+        android:title="Reset"
         app:showAsAction="ifRoom|collapseActionView"
         />
+
+
 </menu>

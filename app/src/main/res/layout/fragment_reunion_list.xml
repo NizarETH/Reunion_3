@@ -43,13 +43,20 @@
 
         </LinearLayout>
 
+        <EditText
+            android:id="@+id/edit_search"
+            android:layout_below="@id/tab_reunion_title"
+            android:layout_width="match_parent"
+            android:visibility="gone"
+            android:layout_margin="5dp"
+            android:layout_height="50dp"/>
         <androidx.recyclerview.widget.RecyclerView
 
             android:id="@+id/list_reunion"
             android:name="com.openclassrooms.reunion.ui.reunion_list.ReunionFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tab_reunion_title"
+            android:layout_below="@id/edit_search"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="1dp"
             android:layout_marginRight="16dp"
