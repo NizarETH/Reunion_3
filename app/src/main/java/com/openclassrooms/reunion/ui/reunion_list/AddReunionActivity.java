@@ -254,7 +254,7 @@ public class AddReunionActivity<nameParticipantInput> extends AppCompatActivity 
     }
 // User click on 'Select Date' button.
     private void buttonSelectDate() {
-   //     final boolean isSpinnerMode = this.checBoxDate.isChecked();
+
 
         // Date Select Listener.
         DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
@@ -293,8 +293,7 @@ public class AddReunionActivity<nameParticipantInput> extends AppCompatActivity 
             this.lastSelectedHour = c.get(Calendar.HOUR_OF_DAY);
             this.lastSelectedMinute = c.get(Calendar.MINUTE);
         }
-   //     final boolean is24HView = false;
-  //      final boolean isSpinnerMode = false;
+
 
         // Time Set Listener.
         TimePickerDialog.OnTimeSetListener timeSetListener = new TimePickerDialog.OnTimeSetListener() {

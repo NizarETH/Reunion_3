@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/menu_dateAsc"
+        android:id="@+id/menu_date"
         app:showAsAction="ifRoom|collapseActionView"
         android:title="Date"
         />
@@ -11,6 +11,12 @@
     <item
         android:id="@+id/menu_lieu"
         android:title="Lieu"
+        app:showAsAction="ifRoom|collapseActionView"
+        />
+
+    <item
+        android:id="@+id/menu_init"
+        android:title="Liste_Init"
         app:showAsAction="ifRoom|collapseActionView"
         />
 </menu>

@@ -1,15 +1,21 @@
 package com.openclassrooms.reunion.ui.reunion_list;
 
+import static androidx.core.graphics.TypefaceCompatApi21Impl.init;
+
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.DatePicker;
 
 import androidx.appcompat.widget.PopupMenu;
-import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -25,10 +31,11 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 import java.util.logging.Filter;
-
+//import android.widget.Filter.FilterResults;
 
 public class ReunionFragment extends Fragment {
 
@@ -38,6 +45,11 @@ public class ReunionFragment extends Fragment {
     private RecyclerView mRecyclerView;
     Reunion reunion;
     MyReunionRecyclerViewAdapter mAdapter;
+
+
+    private int lSYear;
+    private int lSMonth;
+    private int lastSelectedDayOfMonth;
 
     /**
      * Create and return a new instance
@@ -52,6 +64,15 @@ public class ReunionFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mApiService = DI.getReunionApiService();
+
+
+        // Get Current Date
+        final Calendar c = Calendar.getInstance();
+        this.lSYear = c.get(Calendar.YEAR);
+        this.lSMonth = c.get(Calendar.MONTH);
+        this.lastSelectedDayOfMonth = c.get(Calendar.DAY_OF_MONTH);
+
+
     }
 
     @Override
@@ -73,17 +94,44 @@ public class ReunionFragment extends Fragment {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()) {
-                            case R.id.menu_dateAsc: {
-                                Collections.sort(mReunions, Reunion.ReunionDateAscComparator);
+                            case R.id.menu_date: {
 
+                                R.id.menu_date.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        buttonSelectDate();
+                                    }
+                                });
+
+                            String s =lastSelectedDayOfMonth+" - "+lSMonth+ " - " +lSYear;
+                            mAdapter.getFilter().filter(s);
+                            mAdapter.notifyDataSetChanged();
+                            return true;
+                           };
+
+                            case R.id.menu_lieu: {
+                                    R.id.menu_lieu.addTextChangedListener(new TextWatcher() {
+
+                                    @Override
+                                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                                    }
+
+                                    @Override
+                                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                                    }
+
+                                    @Override
+                                    public void afterTextChanged(Editable s) {
+                                        mAdapter.getFilter().filter(s);
+                                    }
+                                    });
                                mAdapter.notifyDataSetChanged();
                                 return true;
                             }
 
-                            case R.id.menu_lieu: {
-                                Collections.sort(mReunions, Reunion.ReunionSalleComparator);
-                                //Toast.makeText(this,"Sort nameSalleReunion ascending",Toast.LENGTH_SHORT).show();
-                               mAdapter.notifyDataSetChanged();
+                            case R.id.menu_init: {
+                                initList();
+                                mAdapter.notifyDataSetChanged();
                                 return true;
                             }
                             default:
@@ -159,7 +207,7 @@ public class ReunionFragment extends Fragment {
     }
 
     //filter class
-    private class RecordFilter {
+ /  private class RecordFilter {
 
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
@@ -170,7 +218,7 @@ public class ReunionFragment extends Fragment {
             // if edittext is null return the actual list
             if (constraint == null || constraint.length() == 0) {
                 //No need for filter
-                results.values = mReunionsFull;
+                results.values= mReunionsFull;
                 results.count = mReunionsFull.size();
 
             } else {
@@ -197,6 +245,33 @@ public class ReunionFragment extends Fragment {
             mAdapter.notifyDataSetChanged();
         }
     }
+
+    // User click on 'Select Date' button.
+    private void buttonSelectDate() {
+
+
+        // Date Select Listener.
+        DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
+
+            @Override
+            public void onDateSet(DatePicker view, int year,
+                                  int monthOfYear, int dayOfMonth) {
+
+                dateInput.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+
+                lSYear = year;
+                lSMonth = monthOfYear+1;
+                lastSelectedDayOfMonth = dayOfMonth;
+            }
+        };
+
+        DatePickerDialog datePickerDialog = null;
+
+        datePickerDialog = new DatePickerDialog(this,
+                dateSetListener, lSYear, lSMonth, lastSelectedDayOfMonth);
+
+        datePickerDialog.show();
+    }
 }
-}
+//}
 //}
