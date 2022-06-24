@@ -172,7 +172,7 @@ public class AddReunionActivity<nameParticipantInput> extends AppCompatActivity 
                     nameParticipantInputadd = true;
                else
                     nameParticipantInputadd = false;
-                enableButton();
+                    enableButton();
             }
         });
 
@@ -192,7 +192,7 @@ public class AddReunionActivity<nameParticipantInput> extends AppCompatActivity 
                     dateInputadd = true;
                 else
                     dateInputadd = false;
-                enableButton();
+                    enableButton();
             }
         });
 
@@ -213,7 +213,7 @@ public class AddReunionActivity<nameParticipantInput> extends AppCompatActivity 
                 }
                 else
                     heureInputadd = false;
-                enableButton();
+                 enableButton();
 
             }
             });
@@ -265,7 +265,7 @@ public class AddReunionActivity<nameParticipantInput> extends AppCompatActivity 
                     public void onDateSet(DatePicker view, int year,
                                           int monthOfYear, int dayOfMonth) {
 
-                        dateInput.setText(handleDay(dayOfMonth) + "-" + handleDay((monthOfYear + 1)) + "-" + year);
+                        dateInput.setText(handleDay(dayOfMonth) + "/" + handleDay((monthOfYear + 1)) + "/" + year);
 
                         lSYear = year;
                         lSMonth = monthOfYear;
@@ -296,9 +296,7 @@ public class AddReunionActivity<nameParticipantInput> extends AppCompatActivity 
        timePickerDialog.show();
 
 
-
     }
-
 
 
     /**
@@ -315,5 +313,6 @@ public class AddReunionActivity<nameParticipantInput> extends AppCompatActivity 
             addButton.setEnabled(true);
         }
         else
-            addButton.setEnabled(false);
-    }}
+           addButton.setEnabled(false);
+    }
+}

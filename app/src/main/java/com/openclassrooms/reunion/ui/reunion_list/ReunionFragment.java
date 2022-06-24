@@ -45,15 +45,17 @@ public class ReunionFragment extends Fragment {
 
     private ReunionApiService mApiService;
     private List<Reunion> mReunions;
+    private List<Reunion> mReunions1;
     private String timeValue ;
     private RecyclerView mRecyclerView;
     private int lSYear;
     private int lSMonth;
     private int lastSelectedDayOfMonth;
-    private int lastSelectedHour = -1;
-    private int lastSelectedMinute = -1;
+//    private int lastSelectedHour = -1;
+//    private int lastSelectedMinute = -1;
     private MyReunionRecyclerViewAdapter mAdapter;
     private View view;
+
 
     /**
      * Create and return a new instance
@@ -68,7 +70,6 @@ public class ReunionFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mApiService = DI.getReunionApiService();
-
 
 
 
@@ -88,33 +89,27 @@ public class ReunionFragment extends Fragment {
         view.findViewById(R.id.buttonFilter).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v1) {
+
                 PopupMenu sortMenu = Utils.showMenu(view.findViewById(R.id.buttonFilter), getActivity());
                 sortMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()) {
                             case R.id.menu_date: {
-
-                                if(view.findViewById(R.id.edit_search).getVisibility() == View.GONE)
-                                   view.findViewById(R.id.edit_search).setVisibility(View.VISIBLE);
-
                                 buttonSelectDate();
-
                                 return true;
                            }
 
                             case R.id.menu_lieu: {
-
-                                if(view.findViewById(R.id.edit_search).getVisibility() == View.GONE)
+                               if(view.findViewById(R.id.edit_search).getVisibility() == View.GONE)
                                     view.findViewById(R.id.edit_search).setVisibility(View.VISIBLE);
-
 
                                 return true;
                             }
 
                             case R.id.menu_init: {
                                 initList();
-                                mAdapter.notifyDataSetChanged();
+
                                 return true;
                             }
                             default:
@@ -142,12 +137,26 @@ public class ReunionFragment extends Fragment {
                if(s.length() > 3)
                 {
                     List<Reunion> filteredList = new ArrayList<>();
-                    for (int i = 0; i < mReunions.size(); i++) {
-                        if(mReunions.get(i).getNameSalleReunion().toLowerCase().contains(s))
-                            filteredList.add(mReunions.get(i));
+
+                    if (mReunions.size()==mReunions1.size()) {
+                        for (int i = 0; i < mReunions.size(); i++) {
+                            if (mReunions.get(i).getNameSalleReunion().toLowerCase().contains(s))
+                                filteredList.add(mReunions.get(i));
+                        }
+                        mAdapter = new MyReunionRecyclerViewAdapter(filteredList);
+                        mRecyclerView.setAdapter(mAdapter);
+                        mReunions1 = filteredList;
                     }
-                    mAdapter = new MyReunionRecyclerViewAdapter(filteredList);
-                    mRecyclerView.setAdapter(mAdapter);
+                    else {
+                        for (int i = 0; i < mReunions1.size(); i++) {
+                            if (mReunions1.get(i).getDateReunion().toLowerCase().contains(s)
+                            )
+                                filteredList.add(mReunions1.get(i));
+                        }
+                        mAdapter = new MyReunionRecyclerViewAdapter(filteredList);
+                        mRecyclerView.setAdapter(mAdapter);
+                        mReunions1 = filteredList;
+                    }
                 }
                else if( s.length() == 0)
                    initList();
@@ -160,9 +169,8 @@ public class ReunionFragment extends Fragment {
             public void onClick(View view) {
                 Integer id = mReunions.size();
                 Intent i = new Intent(getActivity(), AddReunionActivity.class);
-                i.putExtra("id", id++);
+             //   i.putExtra("id", id++);
                 startActivity(i);
-
 
             }
         } );
@@ -176,6 +184,7 @@ public class ReunionFragment extends Fragment {
 
         view.findViewById(R.id.edit_search).setVisibility(View.GONE);
         mReunions = mApiService.getReunions();
+        mReunions1 = mApiService.getReunions();
         mAdapter = new MyReunionRecyclerViewAdapter(mReunions);
         mRecyclerView.setAdapter(mAdapter);
     }
@@ -219,6 +228,8 @@ public class ReunionFragment extends Fragment {
         int month = c.get(Calendar.MONTH);
         int day = c.get(Calendar.DAY_OF_MONTH);
 
+
+
         DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(),
                 new DatePickerDialog.OnDateSetListener() {
 
@@ -226,10 +237,25 @@ public class ReunionFragment extends Fragment {
                     public void onDateSet(DatePicker view, int year,
                                           int monthOfYear, int dayOfMonth) {
                         String dayHandled = handleDay(monthOfYear + 1);
-                        buttonSelectTime(dayOfMonth + "/" +dayHandled + "/" + year);
+                      String  date = dayOfMonth + "/" +dayHandled + "/" + year;
                         lSYear = year;
                         lSMonth = monthOfYear;
                         lastSelectedDayOfMonth = dayOfMonth;
+                        List<Reunion> filteredList = new ArrayList<>();
+
+
+                            for (int i = 0; i < mReunions.size(); i++) {
+                                if (mReunions.get(i).getDateReunion().toLowerCase().equalsIgnoreCase(date)
+                                )
+                                    filteredList.add(mReunions.get(i));
+                            }
+                            mAdapter = new MyReunionRecyclerViewAdapter(filteredList);
+                            mRecyclerView.setAdapter(mAdapter);
+                            mReunions1 = filteredList;
+
+
+
+
                     }
                 }, year, month, day);
 
@@ -237,40 +263,8 @@ public class ReunionFragment extends Fragment {
     }
 
 
-    private void buttonSelectTime(String date)  {
-
-
-        if(this.lastSelectedHour == -1)  {
-            // Get Current Time
-            final Calendar c = Calendar.getInstance();
-            this.lastSelectedHour = c.get(Calendar.HOUR_OF_DAY);
-            this.lastSelectedMinute = c.get(Calendar.MINUTE);
-        }
-
-
-
-        TimePickerDialog timePickerDialog = new TimePickerDialog(getActivity(),
-                (view, hourOfDay, minute) -> {
-                   String  minuteValue = handleDay(minute);
-                     timeValue = hourOfDay + "h" + minuteValue;
-                    date.concat(" "+timeValue );
-                    lastSelectedHour = hourOfDay;
-                    lastSelectedMinute = minute;
-                    List<Reunion> filteredList = new ArrayList<>();
-                    for (int i = 0; i < mReunions.size(); i++) {
-                        if(mReunions.get(i).getDateReunion().toLowerCase().equalsIgnoreCase(date)
-                        && mReunions.get(i).getHeureReunion().toLowerCase().equalsIgnoreCase(timeValue))
-                            filteredList.add(mReunions.get(i));
-                    }
-                    mAdapter = new MyReunionRecyclerViewAdapter(filteredList);
-                    mRecyclerView.setAdapter(mAdapter);
-                }, lastSelectedHour, lastSelectedMinute, true);
-        timePickerDialog.show();
-
-
-
     }
 
 
-}
+
 

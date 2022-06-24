@@ -2,13 +2,17 @@ package com.openclassrooms.reunion.reunion_list;
 
 import static androidx.test.espresso.Espresso.onData;
 import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu;
+import static androidx.test.espresso.Espresso.openContextualActionModeOverflowMenu;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.hasMinimumChildCount;
+import static androidx.test.espresso.matcher.ViewMatchers.hasSibling;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.isEnabled;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
+import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
 
 
 import static com.openclassrooms.reunion.utils.RecyclerViewItemCountAssertion.withItemCount;
@@ -16,7 +20,10 @@ import static com.openclassrooms.reunion.utils.RecyclerViewItemCountAssertion.wi
 import com.openclassrooms.reunion.model.Reunion;
 import com.openclassrooms.reunion.ui.reunion_list.ListReunionActivity;
 
+import androidx.test.core.app.ApplicationProvider;
 import androidx.test.espresso.ViewAction;
+import androidx.test.espresso.ViewInteraction;
+import androidx.test.espresso.action.ViewActions;
 import androidx.test.espresso.assertion.ViewAssertions;
 import androidx.test.espresso.contrib.RecyclerViewActions;
 import androidx.test.espresso.intent.Intents;
@@ -28,6 +35,10 @@ import com.openclassrooms.reunion.utils.DeleteViewAction;
 
 import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.not;
+import static java.util.EnumSet.allOf;
+
+import android.support.test.InstrumentationRegistry;
+
 import org.hamcrest.CoreMatchers;
 import org.hamcrest.Matcher;
 import org.hamcrest.Matchers;
@@ -100,7 +111,17 @@ public class ReunionTest {
         onView(ViewMatchers.withId(R.id.list_reunion)).check(withItemCount(ITEMS_COUNT));
         onView(withId(R.id.add_reunion)).perform(click());
         onView(withId(R.id.layout1)).check(matches(isDisplayed()));
-        //  addButton.setEnabled(true)
+        // Comment ==> addButton.setEnabled(true)
+        onView(ViewMatchers.withId(R.id.inom_Reunion))
+                .perform(ViewActions.replaceText("Reunion A"), ViewActions.closeSoftKeyboard());
+        onView(ViewMatchers.withId(R.id.idate_Reunion))
+                .perform(ViewActions.replaceText("15/04/2022"), ViewActions.closeSoftKeyboard());
+        onView(ViewMatchers.withId(R.id.iheure_Reunion))
+                .perform(ViewActions.replaceText("15h45"), ViewActions.closeSoftKeyboard());
+        onView(ViewMatchers.withId(R.id.inom_salle_Reunion))
+                .perform(ViewActions.replaceText("Mangallet"), ViewActions.closeSoftKeyboard());
+        onView(ViewMatchers.withId(R.id.iparticipant_Reunion))
+                .perform(ViewActions.replaceText("toto@hotmail.fr,ruth@ymail.com"), ViewActions.closeSoftKeyboard());
         onView(withId(R.id.create)).perform(click());
         onView(withId(R.id.list_reunion)).check(matches(isDisplayed()));
         onView(ViewMatchers.withId(R.id.list_reunion)).check(withItemCount(ITEMS_COUNT+1));
@@ -133,33 +154,39 @@ public class ReunionTest {
      * Test sur le filtre trie ascendant
      */
     @Test
-    public void mTriDateAsc(){
+    public void mFiltreDate(){
         onView(withId(R.id.buttonFilter)).perform(click());
-        onView(withId(R.id.menu_dateAsc)).perform(click());
-   //     onView(ViewMatchers.withId(R.id.list_reunion)).
-   //             check(ViewMatchers.<String>containsInAnyOrder((Collection<Matcher<? super String>>) withId(R.id.item_list_heureR)));
+
+        openActionBarOverflowOrOptionsMenu(
+                InstrumentationRegistry.getTargetContext());
+
+        onView(withId(R.id.menu_date)).perform(click());
+        onView(ViewMatchers.withId(R.id.menu_date))
+                .perform(ViewActions.replaceText("15/0/2022"), ViewActions.closeSoftKeyboard());
+        onView(withId(R.id.list_reunion)).check(matches(isDisplayed()));
+      //  onView(allOf(withText().matches("15/0/2022"), hasSibling(withText("item: 0"))));
     }
 
-    /**
-     * Test sur le filtre trie descendant
-     */
-    @Test
-    public void mTriDateDes(){
-        onView(withId(R.id.buttonFilter)).perform(click());
-        onView(withId(R.id.menu_dateDes)).perform(click());
-     //   onView(withId(R.id.list_reunion)).
-       //         check(ViewAssertions.selectedDescendantsMatch(withId(R.id.item_list_heureR)));
-    }
 
     /**
-     * Test sur le filtre trie descendant
+     * Test sur le filtre par Lieu
      */
     @Test
-    public void mTriLieu(){
+    public void mFiltre_Lieu(){
         onView(withId(R.id.buttonFilter)).perform(click());
-        onView(withId(R.id.menu_lieu)).perform(click());
-  //      onView(ViewMatchers.withId(R.id.list_reunion)).
- //               check(ViewMatchers.<String>containsInAnyOrder((Collection<Matcher<? super String>>) withId(R.id.item_list_salleR)));
+
+        openActionBarOverflowOrOptionsMenu(
+                InstrumentationRegistry.getTargetContext());
+
+      //  openContextualActionModeOverflowMenu();
+        // Click on the icon.
+        onView((withId(R.id.menu_lieu)))
+                .perform(click());
+
+        onView(ViewMatchers.withId(R.id.edit_search))
+                .perform(ViewActions.replaceText("Mangallet"),
+                        ViewActions.closeSoftKeyboard()).perform(click());
+        onView(withId(R.id.list_reunion)).check(matches(isDisplayed()));
     }
 }
 

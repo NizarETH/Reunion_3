@@ -17,7 +17,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 
 /**
- * Unit test on Neighbour
+ * Unit test on Reunion
  */
 @RunWith(JUnit4.class)
 public class ReunionServiceTest {

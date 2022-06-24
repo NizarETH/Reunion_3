@@ -52,10 +52,6 @@ public class DetailReunionActivity extends FragmentActivity {
             }
         });
 
-
-
-
-
     }
 
 }
