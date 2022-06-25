@@ -137,7 +137,6 @@ public class ReunionFragment extends Fragment {
                if(s.length() > 3)
                 {
                     List<Reunion> filteredList = new ArrayList<>();
-
                     if (mReunions.size()==mReunions1.size()) {
                         for (int i = 0; i < mReunions.size(); i++) {
                             if (mReunions.get(i).getNameSalleReunion().toLowerCase().contains(s))
@@ -169,7 +168,6 @@ public class ReunionFragment extends Fragment {
             public void onClick(View view) {
                 Integer id = mReunions.size();
                 Intent i = new Intent(getActivity(), AddReunionActivity.class);
-             //   i.putExtra("id", id++);
                 startActivity(i);
 
             }
@@ -243,7 +241,7 @@ public class ReunionFragment extends Fragment {
                         lastSelectedDayOfMonth = dayOfMonth;
                         List<Reunion> filteredList = new ArrayList<>();
 
-
+                        if (mReunions.size()==mReunions1.size()) {
                             for (int i = 0; i < mReunions.size(); i++) {
                                 if (mReunions.get(i).getDateReunion().toLowerCase().equalsIgnoreCase(date)
                                 )
@@ -252,9 +250,17 @@ public class ReunionFragment extends Fragment {
                             mAdapter = new MyReunionRecyclerViewAdapter(filteredList);
                             mRecyclerView.setAdapter(mAdapter);
                             mReunions1 = filteredList;
-
-
-
+                        }
+                        else {
+                            for (int i = 0; i < mReunions1.size(); i++) {
+                                if (mReunions1.get(i).getDateReunion().toLowerCase().contains(date)
+                                )
+                                    filteredList.add(mReunions1.get(i));
+                            }
+                            mAdapter = new MyReunionRecyclerViewAdapter(filteredList);
+                            mRecyclerView.setAdapter(mAdapter);
+                            mReunions1 = filteredList;
+                        }
 
                     }
                 }, year, month, day);

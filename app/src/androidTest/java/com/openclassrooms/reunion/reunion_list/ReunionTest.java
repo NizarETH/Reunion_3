@@ -34,6 +34,7 @@ import com.openclassrooms.reunion.R;
 import com.openclassrooms.reunion.utils.DeleteViewAction;
 
 import static org.hamcrest.Matchers.containsInAnyOrder;
+import static org.hamcrest.Matchers.hasItem;
 import static org.hamcrest.Matchers.not;
 import static java.util.EnumSet.allOf;
 
@@ -61,6 +62,7 @@ public class ReunionTest {
      */
     private static int ITEMS_COUNT = 7;
     private ListReunionActivity mActivity;
+    String text;
 
     @Rule
     public ActivityTestRule<ListReunionActivity> mActivityRule =
@@ -151,7 +153,7 @@ public class ReunionTest {
     }
 
     /**
-     * Test sur le filtre trie ascendant
+     * Test sur le filtre par date
      */
     @Test
     public void mFiltreDate(){
@@ -163,6 +165,7 @@ public class ReunionTest {
         onView(withId(R.id.menu_date)).perform(click());
         onView(ViewMatchers.withId(R.id.menu_date))
                 .perform(ViewActions.replaceText("15/0/2022"), ViewActions.closeSoftKeyboard());
+
         onView(withId(R.id.list_reunion)).check(matches(isDisplayed()));
       //  onView(allOf(withText().matches("15/0/2022"), hasSibling(withText("item: 0"))));
     }
