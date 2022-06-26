@@ -21,6 +21,7 @@ import com.openclassrooms.reunion.model.Reunion;
 import com.openclassrooms.reunion.ui.reunion_list.ListReunionActivity;
 
 import androidx.test.core.app.ApplicationProvider;
+import androidx.test.espresso.NoMatchingViewException;
 import androidx.test.espresso.ViewAction;
 import androidx.test.espresso.ViewInteraction;
 import androidx.test.espresso.action.ViewActions;
@@ -157,12 +158,15 @@ public class ReunionTest {
      */
     @Test
     public void mFiltreDate(){
+        openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
+
         onView(withId(R.id.buttonFilter)).perform(click());
 
-        openActionBarOverflowOrOptionsMenu(
-                InstrumentationRegistry.getTargetContext());
+   //     openActionBarOverflowOrOptionsMenu(
+   //             InstrumentationRegistry.getTargetContext());
+        onView(withText(R.string.date)).perform(click());
 
-        onView(withId(R.id.menu_date)).perform(click());
+   //     onView(withId(R.id.menu_date)).perform(click());
         onView(ViewMatchers.withId(R.id.menu_date))
                 .perform(ViewActions.replaceText("15/0/2022"), ViewActions.closeSoftKeyboard());
 

@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Ma réu</string>
     <string name="activity_new_reunion">New reunion</string>
+    <string name="date">Date</string>
 </resources>
