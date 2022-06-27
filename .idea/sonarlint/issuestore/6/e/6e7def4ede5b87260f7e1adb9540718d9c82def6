@@ -1,0 +1,11 @@
+
+E
+java:S1604m"(Make this anonymous inner class a lambda(ĞõÑÚ8»õÎ™˜0
+9
+java:S1643O"Use a StringBuilder instead.(ğ©€8»õÎ™˜0
+9
+java:S1643b"Use a StringBuilder instead.(‹ı¢–8»õÎ™˜0
+k
+java:S3973M"IUse indentation to denote the code conditionally executed by this "else".(„¶áìøÿÿÿÿ8¼õÎ™˜0
+o	java:S116."SRename this field "FullList" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(•ÀŸÔ8 ØÔ™˜0
+w	java:S116¡"ZRename this field "Searched_Filter" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ëàı8˜¬Ğ™˜0

@@ -137,25 +137,21 @@ public class ReunionFragment extends Fragment {
                if(s.length() > 3)
                 {
                     List<Reunion> filteredList = new ArrayList<>();
-                    if (mReunions.size()==mReunions1.size()) {
+                    if(mReunions1.size() > 0 && mReunions1.size() < mReunions.size())
+                        for (int i = 0; i < mReunions1.size(); i++) {
+                            if (mReunions1.get(i).getNameSalleReunion().toLowerCase().contains(s))
+                                filteredList.add(mReunions1.get(i));
+                        }
+                    else
                         for (int i = 0; i < mReunions.size(); i++) {
                             if (mReunions.get(i).getNameSalleReunion().toLowerCase().contains(s))
                                 filteredList.add(mReunions.get(i));
                         }
+
                         mAdapter = new MyReunionRecyclerViewAdapter(filteredList);
                         mRecyclerView.setAdapter(mAdapter);
                         mReunions1 = filteredList;
-                    }
-                    else {
-                        for (int i = 0; i < mReunions1.size(); i++) {
-                            if (mReunions1.get(i).getDateReunion().toLowerCase().contains(s)
-                            )
-                                filteredList.add(mReunions1.get(i));
-                        }
-                        mAdapter = new MyReunionRecyclerViewAdapter(filteredList);
-                        mRecyclerView.setAdapter(mAdapter);
-                        mReunions1 = filteredList;
-                    }
+
                 }
                else if( s.length() == 0)
                    initList();
@@ -241,26 +237,20 @@ public class ReunionFragment extends Fragment {
                         lastSelectedDayOfMonth = dayOfMonth;
                         List<Reunion> filteredList = new ArrayList<>();
 
-                        if (mReunions.size()==mReunions1.size()) {
+                        if(mReunions1.size() > 0 && mReunions1.size() < mReunions.size())
+                            for (int i = 0; i < mReunions1.size(); i++) {
+                                if (mReunions1.get(i).getDateReunion().toLowerCase().contains(date))
+                                    filteredList.add(mReunions1.get(i));
+                            }
+                        else
                             for (int i = 0; i < mReunions.size(); i++) {
-                                if (mReunions.get(i).getDateReunion().toLowerCase().equalsIgnoreCase(date)
-                                )
+                                if (mReunions.get(i).getDateReunion().toLowerCase().contains(date))
                                     filteredList.add(mReunions.get(i));
                             }
                             mAdapter = new MyReunionRecyclerViewAdapter(filteredList);
                             mRecyclerView.setAdapter(mAdapter);
                             mReunions1 = filteredList;
-                        }
-                        else {
-                            for (int i = 0; i < mReunions1.size(); i++) {
-                                if (mReunions1.get(i).getDateReunion().toLowerCase().contains(date)
-                                )
-                                    filteredList.add(mReunions1.get(i));
-                            }
-                            mAdapter = new MyReunionRecyclerViewAdapter(filteredList);
-                            mRecyclerView.setAdapter(mAdapter);
-                            mReunions1 = filteredList;
-                        }
+
 
                     }
                 }, year, month, day);

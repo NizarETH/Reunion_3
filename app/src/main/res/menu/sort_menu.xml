@@ -1,21 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
-<item
-    android:id="@+id/action_more"
-    app:showAsAction="always"
-    android:title="menu">
-    <menu>
-
     <item
         android:id="@+id/menu_date"
-        android:title="@string/date"
+        android:title="@string/menu_date"
         app:actionViewClass="androidx.appcompat.widget.SearchView"
         app:showAsAction="ifRoom|collapseActionView" />
 
     <item
         android:id="@+id/menu_lieu"
-        android:title="Lieu"
+        android:title="@string/menu_lieu"
         app:showAsAction="ifRoom|collapseActionView"
         />
 
@@ -25,6 +19,4 @@
         app:showAsAction="ifRoom|collapseActionView"
         />
 
-    </menu>
-</item>
 </menu>
