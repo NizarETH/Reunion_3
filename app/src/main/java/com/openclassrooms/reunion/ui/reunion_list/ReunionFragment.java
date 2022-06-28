@@ -134,7 +134,7 @@ public class ReunionFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable s) {
 
-               if(s.length() > 3)
+               if(s.length() > 1)
                 {
                     List<Reunion> filteredList = new ArrayList<>();
                     if(mReunions1.size() > 0 && mReunions1.size() < mReunions.size())
@@ -215,7 +215,7 @@ public class ReunionFragment extends Fragment {
     }
 
     // User click on 'Select Date' button.
-    private void buttonSelectDate() {
+    public void buttonSelectDate() {
 
         Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);
