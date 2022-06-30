@@ -43,7 +43,7 @@ public class ReunionServiceTest {
         List<Reunion> expectedReunion = DummyReunionGenerator.DUMMY_REUNION;
         assertThat(reunions, IsIterableContainingInAnyOrder.containsInAnyOrder(expectedReunion.toArray()));
         service.createReunion(reunionToAdd);
-        Reunion reunion=service.getReunions().get(0);
+        Reunion reunion = service.getReunions().get(0);
         assertSame(reunion,reunionToAdd);
     }
 
@@ -57,27 +57,20 @@ public class ReunionServiceTest {
     @Test
     public void testFiltreDate() {
         List<Reunion> reunions = service.getReunions();
-        String date="15/07/2022";
+
         buttonSelectDate(reunions);
     }
 
     public void buttonSelectDate(List<Reunion> reunions) {
         List<Reunion> filteredList = new ArrayList<>();
-        List<Reunion> reunions1 = service.getReunions();
-        String date="15/07/2022";
+        String date = "15/07/2022";
 
-        if(reunions1.size() > 0 && reunions1.size() < reunions.size())
-            for (int i = 0; i < reunions1.size(); i++) {
-                if (reunions1.get(i).getDateReunion().toLowerCase().contains(date))
-                    filteredList.add(reunions1.get(i));
-            }
-        else
             for (int i = 0; i < reunions.size(); i++) {
                 if (reunions.get(i).getDateReunion().toLowerCase().contains(date))
                     filteredList.add(reunions.get(i));
             }
 
-        for (Reunion reunion : reunions = filteredList) {
+        for (Reunion reunion : filteredList) {
             assertEquals(date,reunion.getDateReunion());
         }
 
@@ -86,29 +79,24 @@ public class ReunionServiceTest {
     @Test
     public void testFiltreLieu() {
         List<Reunion> reunions = service.getReunions();
-        String lieu="Mangallet";
+
         buttonSelectLieu(reunions);
         
     }
 
     private void buttonSelectLieu(List<Reunion> reunions) {
         List<Reunion> filteredList = new ArrayList<>();
-        List<Reunion> reunions1 = service.getReunions();
-        String lieu="Mangallet";
 
-        if(reunions1.size() > 0 && reunions1.size() < reunions.size())
-            for (int i = 0; i < reunions1.size(); i++) {
-                if (reunions1.get(i).getDateReunion().toLowerCase().contains(lieu))
-                    filteredList.add(reunions1.get(i));
-            }
-        else
+        String lieu = "Mangallet";
+
+
             for (int i = 0; i < reunions.size(); i++) {
-                if (reunions.get(i).getDateReunion().toLowerCase().contains(lieu))
+                if (reunions.get(i).getNameSalleReunion().equalsIgnoreCase(lieu))
                     filteredList.add(reunions.get(i));
             }
 
-        for (Reunion reunion : reunions = filteredList) {
-            assertEquals(lieu,reunion.getDateReunion());
+        for (Reunion reunion :  filteredList) {
+            assertEquals(lieu,reunion.getNameSalleReunion());
         }
     }
 
