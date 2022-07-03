@@ -72,10 +72,8 @@ public class AddReunionActivity<nameParticipantInput> extends AppCompatActivity 
         nameInput =  (TextInputEditText)findViewById(R.id.inom_Reunion);
         button_Date= (TextView) findViewById(R.id.date_Reunion);
         button_Heure= (TextView) findViewById(R.id.heure_Reunion);
-       // checBoxDate= (CheckBox) findViewById(R.id.checkBox_isSpinnerMode);
         dateInput = (TextView)findViewById(R.id.idate_Reunion);
         heureInput = (TextView)findViewById(R.id.iheure_Reunion);
-    //    checBoxheure= (CheckBox) findViewById(R.id.checkBoxH_isSpinnerMode);
         nomSalleInput = (TextInputEditText)findViewById(R.id.inom_salle_Reunion);
         nameParticipantInput = (TextInputEditText)findViewById(R.id.iparticipant_Reunion);
         addButton = findViewById(R.id.create);
@@ -83,8 +81,10 @@ public class AddReunionActivity<nameParticipantInput> extends AppCompatActivity 
         this.dateInput.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                dateInput.setEnabled(true);
                 buttonSelectDate();
             }
+
         });
 
         // Get Current Date
@@ -188,6 +188,7 @@ public class AddReunionActivity<nameParticipantInput> extends AppCompatActivity 
 
             @Override
             public void afterTextChanged(Editable s) {
+
                 if (s.length() > 0)
                     dateInputadd = true;
                 else
@@ -229,7 +230,9 @@ public class AddReunionActivity<nameParticipantInput> extends AppCompatActivity 
 
                 String nameR = nameInput.getText().toString();
                 String heureR = heureInput.getText().toString();
+          //      String heureR = lastSelectedHour + "h" + lastSelectedMinute;
                 String dateR = dateInput.getText().toString();
+           //     String dateR = lastSelectedDayOfMonth + "/" + lSMonth + "/" + lSYear;
                 String nomSalleR = nomSalleInput.getText().toString();
 
                 List<String> participantR = new ArrayList<>();

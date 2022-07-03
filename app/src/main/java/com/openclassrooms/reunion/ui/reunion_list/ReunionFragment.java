@@ -139,12 +139,12 @@ public class ReunionFragment extends Fragment {
                     List<Reunion> filteredList = new ArrayList<>();
                     if(mReunions1.size() > 0 && mReunions1.size() < mReunions.size())
                         for (int i = 0; i < mReunions1.size(); i++) {
-                            if (mReunions1.get(i).getNameSalleReunion().toLowerCase().contains(s))
+                            if (mReunions1.get(i).getNameSalleReunion().contains(s))
                                 filteredList.add(mReunions1.get(i));
                         }
                     else
                         for (int i = 0; i < mReunions.size(); i++) {
-                            if (mReunions.get(i).getNameSalleReunion().toLowerCase().contains(s))
+                            if (mReunions.get(i).getNameSalleReunion().contains(s))
                                 filteredList.add(mReunions.get(i));
                         }
 

@@ -42,8 +42,9 @@
         android:id="@+id/inom_Reunion"
         android:layout_width="200dp"
         android:layout_height="50dp"
+        android:inputType="textCapSentences"
         android:hint="Nom"
-        android:inputType="textPersonName" />
+         />
     </LinearLayout>
 
     <LinearLayout
@@ -59,10 +60,11 @@
             android:textSize="20dp"
             android:text="Date :" />
 
-        <com.google.android.material.textfield.TextInputEditText
+        <EditText
             android:id="@+id/idate_Reunion"
             android:layout_width="120dp"
             android:layout_height="40dp"
+            android:enabled="false"
             android:hint="JJ:MM:AAAA"
               />
     </LinearLayout>
@@ -80,10 +82,11 @@
             android:textSize="20dp"
             android:text="Heure :" />
 
-        <com.google.android.material.textfield.TextInputEditText
+        <EditText
             android:id="@+id/iheure_Reunion"
             android:layout_width="120dp"
             android:layout_height="40dp"
+            android:enabled="false"
             android:hint="HH:MM"
             android:inputType="time" />
 

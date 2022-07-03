@@ -163,7 +163,7 @@ public class ReunionTest {
         onView(withText(R.string.menu_lieu)).perform(click());
 
         onView(ViewMatchers.withId(R.id.edit_search))
-                .perform(ViewActions.replaceText("mangallet"),
+                .perform(ViewActions.replaceText("Mangallet"),
                         ViewActions.closeSoftKeyboard()).perform(click());
          onView(withId(R.id.list_reunion)).check(matches(isDisplayed()));
     }
