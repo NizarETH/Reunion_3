@@ -18,12 +18,32 @@
         android:layout_width="match_parent"
         android:layout_height="38dp"
         android:text="AJOUT REUNION "
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="20dp"
         android:textAlignment="center"
         android:textSize="30dp"
         android:textColor="@color/black"
         android:textStyle="bold"
         android:gravity="center"/>
+
+
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/button_scrollDown"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="19dp"
+            android:layout_marginLeft="19dp"
+            android:layout_marginTop="24dp"
+            android:text="Scroll Down"
+            app:layout_constraintStart_toEndOf="@+id/button_scrollUp"
+            app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -64,7 +84,6 @@
             android:id="@+id/idate_Reunion"
             android:layout_width="120dp"
             android:layout_height="40dp"
-            android:enabled="false"
             android:hint="JJ:MM:AAAA"
               />
     </LinearLayout>
@@ -86,7 +105,6 @@
             android:id="@+id/iheure_Reunion"
             android:layout_width="120dp"
             android:layout_height="40dp"
-            android:enabled="false"
             android:hint="HH:MM"
             android:inputType="time" />
 
@@ -147,5 +165,14 @@
         android:textSize="16dp"
         android:textStyle="bold"
         android:text="Ajouter"/>
+
+    <Button
+        android:id="@+id/button_scrollUp"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView"/>
+    </ScrollView>
 </LinearLayout>
 

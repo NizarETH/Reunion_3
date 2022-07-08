@@ -100,8 +100,6 @@ public class MyReunionRecyclerViewAdapter extends RecyclerView.Adapter<MyReunion
 
                 i.putExtra("rparticpant",emails);
 
-
-
                 holder.mainContent.getContext().startActivity(i);
             }
         });

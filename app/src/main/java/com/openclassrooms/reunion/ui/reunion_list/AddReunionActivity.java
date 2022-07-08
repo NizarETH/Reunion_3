@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -61,6 +62,10 @@ public class AddReunionActivity<nameParticipantInput> extends AppCompatActivity 
     public MaterialButton addButton;
     private ReunionApiService mApiService;
 
+    private ScrollView scrollView;
+    private Button buttonScrollUp;
+    private Button buttonScrollDown;
+    public static final int SCROLL_DELTA = 15; // Pixel.
 
 
     @Override
@@ -78,10 +83,13 @@ public class AddReunionActivity<nameParticipantInput> extends AppCompatActivity 
         nameParticipantInput = (TextInputEditText)findViewById(R.id.iparticipant_Reunion);
         addButton = findViewById(R.id.create);
 
+        this.scrollView = (ScrollView) this.findViewById(R.id.scrollView);
+        this.buttonScrollUp = (Button) this.findViewById(R.id.button_scrollUp);
+        this.buttonScrollDown = (Button) this.findViewById(R.id.button_scrollDown);
+
         this.dateInput.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dateInput.setEnabled(true);
                 buttonSelectDate();
             }
 
@@ -100,7 +108,22 @@ public class AddReunionActivity<nameParticipantInput> extends AppCompatActivity 
             }
         });
 
+        this.buttonScrollUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                doScrollUp();
+            }
+        });
+
+        this.buttonScrollDown.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                doScrollDown();
+            }
+        });
+
         init();
+
     }
 
 
@@ -317,5 +340,27 @@ public class AddReunionActivity<nameParticipantInput> extends AppCompatActivity 
         }
         else
            addButton.setEnabled(false);
+    }
+
+    private void doScrollUp() {
+
+        int x = this.scrollView.getScrollX();
+        int y = this.scrollView.getScrollY();
+
+        if(y - SCROLL_DELTA >= 0) {
+            this.scrollView.scrollTo(x, y-SCROLL_DELTA);
+        }
+
+    }
+
+    private void doScrollDown() {
+        int maxAmount = scrollView.getMaxScrollAmount();
+
+        int x = this.scrollView.getScrollX();
+        int y = this.scrollView.getScrollY();
+
+        if(y + SCROLL_DELTA <= maxAmount) {
+            this.scrollView.scrollTo(x, y + SCROLL_DELTA);
+        }
     }
 }

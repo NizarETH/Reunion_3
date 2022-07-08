@@ -65,6 +65,7 @@
             app:layoutManager="LinearLayoutManager"
             tools:context=".ui.reunion_list.ReunionFragment"
             tools:listitem="@layout/fragment_reunion"
+            tools:itemCount="8"
             tools:visibility="visible" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
